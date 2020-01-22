@@ -3,14 +3,36 @@ import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 
+
 public class ImageToASCII {
 
-//    private final int pixelsPerChar;
     public ImageToASCII() {
-//        this.pixelsPerChar = pixelsPerChar;
+
     }
 
-    public String[] convert(BufferedImage bufferedImage) {                                                              // Each element in array is a line of text to print
+
+    public static BufferedImage scale(BufferedImage bufferedImage, int maxDimension) {
+        double w = bufferedImage.getWidth();
+        double h = bufferedImage.getHeight();
+        double sf = 0;
+        if (w > h) {
+            sf = maxDimension / w;
+        } else {
+            sf = maxDimension / h;
+        }
+        int scaledWidth = (int)(w * sf);
+        int scaledHeight = (int)(h * sf);
+
+        Image tmp = bufferedImage.getScaledInstance(scaledWidth, scaledHeight, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(scaledWidth, scaledHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
+    }
+
+    public String[] convert(BufferedImage img, int maxDimension) {                                                              // Each element in array is a line of text to print
+        BufferedImage bufferedImage = scale(img, maxDimension);
         StringBuilder[] imageInASCII = new StringBuilder[bufferedImage.getHeight()];
         for (int i = 0; i < imageInASCII.length; i++) {
             imageInASCII[i] = new StringBuilder();
@@ -62,4 +84,7 @@ public class ImageToASCII {
         }
         return ' ';
     }
+
+
 }
+

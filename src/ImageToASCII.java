@@ -63,26 +63,28 @@ public class ImageToASCII {
     }
 
     private char colorToChar(int color) {                                                                               // Program currently limited by # characters used
-        if (color < 25) {                                                                                               // I eyeballed densities - next step is to calculate densities
-            return '@';                                                                                                 // And utilize more ascii characters
-        } else if (color >= 25 && color < 51) {
-            return '#';
-        } else if (color >= 51 && color < 76) {
-            return '8';
-        } else if (color >= 76 && color < 102) {
-            return '&';
-        } else if (color >= 102 && color < 127) {
-            return 'o';
-        } else if (color >= 127 && color < 153) {
-            return '*';
-        } else if (color >= 153 && color < 178) {
-            return '/';
-        } else if (color >= 178 && color < 204) {
-            return '\'';
-        } else if (color >= 204 && color < 229) {
-            return '.';
-        }
-        return ' ';
+        String chars = "@#8&o*/\'. ";
+        return chars.charAt(color/(255/chars.length() + 1));
+//        if (color < 25) {                                                                                               // I eyeballed densities - next step is to calculate densities
+//            return '@';                                                                                                 // And utilize more ascii characters
+//        } else if (color >= 25 && color < 51) {
+//            return '#';
+//        } else if (color >= 51 && color < 76) {
+//            return '8';
+//        } else if (color >= 76 && color < 102) {
+//            return '&';
+//        } else if (color >= 102 && color < 127) {
+//            return 'o';
+//        } else if (color >= 127 && color < 153) {
+//            return '*';
+//        } else if (color >= 153 && color < 178) {
+//            return '/';
+//        } else if (color >= 178 && color < 204) {
+//            return '\'';
+//        } else if (color >= 204 && color < 229) {
+//            return '.';
+//        }
+//        return ' ';
     }
 
 

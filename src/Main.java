@@ -11,9 +11,8 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         System.out.print("Input the maximum desired dimension of your image: ");
         int maxDimension = scan.nextInt();
-
-        String[] asciiImage = imageToASCII.convert(ImageIO.read(new File("deepfried.png")), maxDimension);
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("PLUDFAscii.txt"));
+        String[] asciiImage = imageToASCII.convert(ImageIO.read(new File("Minesweeper.PNG")), maxDimension);
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("Minesweeper.txt"));
         PrintWriter printWriter = new PrintWriter(bufferedWriter);
         for (int i = 0; i < asciiImage.length; i++) {
             if (asciiImage[i] != null) {
